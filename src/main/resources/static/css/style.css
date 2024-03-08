@@ -1,0 +1,47 @@
+.hover {
+    transition: 0.4s;
+}
+
+.hover:hover {
+    transition: 0.4s;
+    transform: scale(1.03);
+}
+
+
+.banner
+{
+    width:100%;
+    padding:.5rem;
+    height:100vh;
+    background:url("../image/infographic-4799473_1920.jpg") fixed no-repeat;
+    /*linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)) ,*/
+    /*background-size: ;*/
+}
+
+.bg-image
+{
+    background:url("../image/infographic-4799473_1920.jpg") fixed no-repeat;
+     /*linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)) ,*/
+
+}
+.form-group
+{
+    padding:.5rem;
+}
+
+.form-control input
+{
+    border:1px solid rgba(var(--bs-dark-rgb)) !important;
+}
+
+.form-control:focus
+{
+    box-shadow: rgba(var(--bs-warning-rgb)) !important;
+}
+
+
+.resize
+{
+    resize: none;
+}
+
