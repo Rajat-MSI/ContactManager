@@ -1,5 +1,6 @@
 package com.project.customerrelationshipmanager.repository;
 
+import com.project.customerrelationshipmanager.model.Contact;
 import com.project.customerrelationshipmanager.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,10 +1,10 @@
 .hover {
-    transition: 0.4s;
+    transition: 0.2s;
 }
 
 .hover:hover {
-    transition: 0.4s;
-    transform: scale(1.03);
+    transition: 0.2s;
+    transform: scale(1.06);
 }
 
 
@@ -169,6 +169,10 @@
 
 }
 
+th
+{
+    position: sticky;
+}
 /*.view-contact-image*/
 /*{*/
 /*    background-image: ;*/
