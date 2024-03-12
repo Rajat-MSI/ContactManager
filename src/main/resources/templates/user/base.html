@@ -34,34 +34,41 @@
 <body class="bg-image text-color1">
 
 <!--navbar start-->
-<nav class="navbar fixed-top navbar-expand-lg shadow bg-warning">
+<nav class="navbar fixed-top navbar-expand-lg shadow-sm bg-warning">
     <div class="container-fluid">
         <a class="text-dark navbar-brand px-md-3" href="#"><i class="bi bi-person-workspace pe-2"></i>TheHuddle</a>
-        <button class="navbar-toggler shadow-none" style="border:none;" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-<!--            <span class="navbar-toggler-icon"></span>-->
-            <span>
-                <i class="bi bi-list text-dark"></i>
-            </span>
+        <button onclick="toggleSidebar()" class="btn btn-white border-none btn-navbar" style="border:none;">
+            <!--            <span class="navbar-toggler-icon"></span>-->
+            <i style="font-size: 1.2rem;" class="bi bi-list text-dark"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-lg-0">
-                <li class="nav-item px-md-2 py-sm-1">
-                    <a class="nav-link text-dark " th:href="@{/home}"><i class="bi bi-house-fill pe-2"></i>Home</a>
-                </li>
-                <li class="nav-item px-md-2 py-sm-1">
-                    <a class="nav-link text-dark " th:href="@{/about}"><i class="bi bi-info-circle-fill pe-2"></i>About</a>
-                </li>
-                <li class="nav-item px-md-2 py-sm-1">
-                    <a class="nav-link text-dark " th:href="@{/signup}"><i class="bi bi-person-add pe-2"></i>Signup</a>
-                </li>
-                <li class="nav-item px-md-2 py-sm-1">
-                    <a class="nav-link text-dark " th:href="@{/login}"><i class="bi bi-arrow-right pe-2"></i>Login</a>
-                </li>
-            </ul>
-        </div>
     </div>
 </nav>
 <!--navbar end-->
-<div th:replace="${content}"></div>
+
+<!--sidebar start-->
+<div class="sidebar mt-2 shadow-sm">
+    <!--    <span onclick="toggleSidebar()" class="cross-btn">&times;</span>-->
+    <a href="#"  class="h6 item ">WELCOME, <span
+            th:text="${#strings.toUpperCase(user.userName)}"></span>
+    </a>
+    <div class="divider"></div>
+    <a href="" ><i class="bi bi-person-circle pe-2"></i>My Profile</a>
+    <a th:href="@{/user/user_dashboard}" class="item"><i class="bi bi-house-fill pe-2"></i>Home</a>
+    <a th:href="@{/user/view_contact}" class="item"><i class="bi bi-person-lines-fill pe-2"></i>View Contacts</a>
+    <a th:href="@{/user/add_contact}" class="item"><i class="bi bi-person-rolodex pe-2"></i>New Contact</a>
+    <a href="" class="item"><i class="bi bi-gear-fill pe-2"></i>Settings</a>
+    <a th:href="@{/logout}" class="item"><i class="bi bi-arrow-left pe-2"></i>Logout</a>
+    <div class="divider"></div>
+</div>
+<!--sidebar end-->
+
+<!--content start-->
+<div class="content">
+    <!--    <i onclick="toggleSidebar()" class="bi bi-list m-3"></i>-->
+    <div th:replace="${content}">
+    </div>
+</div>
+
+<!--content-end-->
 </body>
 </html>

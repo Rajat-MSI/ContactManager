@@ -10,56 +10,69 @@
 </head>
 <body>
 <section>
-    <div class="container mt-5 pt-4">
-        <div class="row mt-5">
+    <div class="container mt-5 pt-5">
+        <div class="row">
             <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                 <div class="bg-light px-lg-4 px-2 py-4 shadow rounded-2 border ">
                     <div class="h2 text-center text-color1">Signup Here</div>
-<!--                    <div th:if="${session.message}" th:classappend="${session.message.type}" role="alert">-->
-<!--                        <div th:text="${session.message.content}" class="text-center"></div>-->
-<!--                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>-->
-<!--                    </div>-->
                     <form action="" th:action="@{/process_signup}" method="post" th:object="${user}">
-
+                        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert">
+                            <div th:text="${session.message.content}" class="text-center"></div>
+                            <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+                        </div>
                         <!--user name--->
                         <div class="form-group">
-                            <label >Your Name</label>
-                            <input type="text" class="form-control" th:value="${user.userName}" th:classappend="${#fields.hasErrors() ? 'is-invalid':''} "
-                                    name="userName" placeholder="Enter Name">
-                            <small class="text-danger" th:each="e : ${#fields.errors('userName')}" th:text="${e}"></small>
+                            <label>Your Name</label>
+                            <input type="text" class="form-control" th:value="${user.userName}"
+                                   th:classappend="${#fields.hasErrors('userName') ? 'is-invalid':''}"
+                                   name="userName" placeholder="Enter Name">
+                            <small class="text-danger" th:each="e : ${#fields.errors('userName')}"
+                                   th:text="${e}"></small>
                         </div>
 
                         <!--user email--->
                         <div class="form-group">
                             <label>Your Email</label>
                             <input type="email" class="form-control" th:value="${user.userEmail}" name="userEmail"
-                                   th:classappend="${#fields.hasErrors() ? 'is-invalid': ''}" placeholder="Enter Email">
-                            <small class="text-danger d-block" th:each="e : ${#fields.errors('userEmail')}" th:text="${e}"></small>
-                            <small id="emailHelp" class="text-color1">We'll never share your email with anyone else.</small>
+                                   th:classappend="${#fields.hasErrors('userEmail') ? 'is-invalid': ''}"
+                                   placeholder="Enter Email">
+                            <small class="text-danger d-block" th:each="e : ${#fields.errors('userEmail')}"
+                                   th:text="${e}"></small>
+                            <small id="emailHelp" class="text-color1">We'll never share your email with anyone
+                                else.</small>
                         </div>
 
                         <!--user password--->
                         <div class="form-group">
                             <label>Your Password</label>
-                            <input type="password" class="form-control" th:value="${user.userPassword}" name="userPassword"
-                                   th:classappend="${#fields.hasErrors() ? 'is-invalid': ''}" placeholder="Enter Password">
-                            <small class="text-danger d-block" th:each="e : ${#fields.errors('userPassword')}" th:text="${e}"></small>
+                            <input type="password" class="form-control" th:value="${user.userPassword}"
+                                   name="userPassword"
+                                   th:classappend="${#fields.hasErrors('userPassword') ? 'is-invalid': ''}"
+                                   placeholder="Enter Password">
+                            <small class="text-danger d-block" th:each="e : ${#fields.errors('userPassword')}"
+                                   th:text="${e}"></small>
                         </div>
 
                         <!--user about--->
                         <div class="form-group">
                             <label>Enter something about yourself</label>
-                            <textarea type="password" class="form-control  resize" th:classappend="${#fields.hasErrors() ? 'is-invalid': ''}" th:text="${user.userAbout}"
-                                      rows="7" name="userAbout" placeholder="About yourself" ></textarea>
-                            <small class="text-danger d-block" th:each="e : ${#fields.errors('userAbout')}" th:text="${e}"></small>
+                            <textarea type="password" class="form-control  resize"
+                                      th:classappend="${#fields.hasErrors('userAbout') ? 'is-invalid': ''}"
+                                      th:text="${user.userAbout}"
+                                      rows="7" name="userAbout" placeholder="About yourself"></textarea>
+                            <small class="text-danger d-block" th:each="e : ${#fields.errors('userAbout')}"
+                                   th:text="${e}"></small>
                         </div>
                         <div class="form-group text-center">
                             <input type="checkbox" class="form-check-inline resize" name="userEnabled"/>
-                            <label class="form-check-label" >Agree to the <a href="#" >terms and condition</a>.</label>
-                            <small class="text-danger d-block" th:each="e : ${#fields.errors('userEnabled')}" th:text="${e}"></small>
+                            <label class="form-check-label">Agree to the <a href="#">terms and condition</a>.</label>
+                            <small class="text-danger d-block" th:each="e : ${#fields.errors('userEnabled')}"
+                                   th:text="${e}"></small>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-warning form-control" type="submit"><i class="bi bi-person-add pe-2"></i>Signup</button>
+                            <button class="btn btn-warning form-control" type="submit"><i
+                                    class="bi bi-person-add pe-2"></i>Signup
+                            </button>
                         </div>
                     </form>
                 </div>

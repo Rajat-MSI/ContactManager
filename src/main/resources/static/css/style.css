@@ -12,7 +12,7 @@
 {
     width:100%;
     padding:.5rem;
-    height:100vh;
+    height:80vh;
     background:url("../image/infographic-4799473_1920.jpg") fixed no-repeat;
     /*linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)) ,*/
     /*background-size: ;*/
@@ -45,3 +45,131 @@
     resize: none;
 }
 
+.sidebar
+{
+    z-index: 9999999999;
+    width: 14%;
+    background-color: white;
+    height: 100%;
+    position:fixed;
+    padding-top:15px;
+}
+
+.sidebar a
+{
+    display: block;
+    width: 100%;
+    padding:10px 25px;
+    text-decoration: none;
+    transition: 0.2s;
+    color: rgba(var(--bs-dark-rgb)) !important;
+
+}
+
+.sidebar a:hover
+{
+    transition: 0.2s;
+    background-color: rgba(var(--bs-warning-rgb)) !important;
+}
+
+.sidebar .divider
+{
+    height: 1px;
+    width: 100%;
+    background-color: #e2e2e2;
+    margin-top: 10px;
+}
+
+.content
+{
+    margin-left:16%;
+}
+
+.sidebar .cross-btn
+{
+    position: absolute;
+    top:0;
+    right:35px;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px)
+{
+    .sidebar
+    {
+        display: none;
+        width: 80% !important;
+        background-color: white;
+        height: 100vh;
+        position:fixed;
+        padding-top:20px;
+    }
+
+    .content
+    {
+        margin-left: 0 !important;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1080px)
+{
+    .sidebar
+    {
+        display: none;
+        width: 40% !important;
+        background-color: white;
+        height: 100vh;
+        position:fixed;
+        padding-top:20px;
+    }
+
+    .content
+    {
+        margin-left: 0 !important;
+    }
+
+
+}
+
+@media only screen and (min-width: 1080px) and (max-width: 1200px)
+{
+    .sidebar
+    {
+        /*display: none;*/
+        width: 25% !important;
+        background-color: white;
+        height: 100vh;
+        position:fixed;
+        padding-top:20px;
+    }
+
+    .content
+    {
+        margin-left: 27% !important;
+    }
+
+}
+@media only screen and (min-width: 1200px)
+{
+    .sidebar
+    {
+        /*display: none;*/
+        width: 16% !important;
+        background-color: white;
+        height: 100vh;
+        position:fixed;
+        padding-top:20px;
+    }
+
+    .content
+    {
+        margin-left: 16% !important;
+    }
+
+}
+
+/*.view-contact-image*/
+/*{*/
+/*    background-image: ;*/
+/*}*/

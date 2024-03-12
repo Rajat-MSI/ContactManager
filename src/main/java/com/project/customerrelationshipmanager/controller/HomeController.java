@@ -1,9 +1,12 @@
 package com.project.customerrelationshipmanager.controller;
 
+import com.project.customerrelationshipmanager.helper.Message;
 import com.project.customerrelationshipmanager.model.User;
 import com.project.customerrelationshipmanager.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,10 +43,15 @@ public class HomeController {
     public String processSignup(@Valid @ModelAttribute("user") User user,
                                 BindingResult bindingResult,
                                 @RequestParam("userPassword") String userPassword,
-                                Model model) {
+                                HttpSession session) throws InterruptedException {
+        boolean userExists = userRepository.existsUserByUserEmail(user.getUserEmail());
+
+        if (userExists) {
+            session.setAttribute("message",new Message("Seems like user with the email already exists","alert-danger"));
+            return "redirect:/signup";
+        }
         if (bindingResult.hasErrors()) {
             System.out.println("error block");
-
             return "signup";
         }
         user.setUserRole("USER");
@@ -51,13 +59,20 @@ public class HomeController {
         user.setUserPassword(bCryptPasswordEncoder.encode(userPassword));
         System.out.println(user);
         userRepository.save(user);
-        return "redirect:/home";
+        session.setAttribute("message",new Message("Welcome to TheHuddle - User successfully registered redirecting you to the login page","alert-success"));
+        return "redirect:/signup";
     }
 
+//    @PostMapping("/home?success")
+//    public String signupSuccess(Model model)
+//    {
+//        model.addAttribute("message","User successfully registered. Click on 'Get Stated Button' to get started");
+//        return "home";
+//    }
+
     @GetMapping("/login")
-    public String login(Model model)
-    {
-        model.addAttribute("title","Login- TheHuddle");
+    public String login(Model model) {
+        model.addAttribute("title", "Login- TheHuddle");
         return "login";
     }
 

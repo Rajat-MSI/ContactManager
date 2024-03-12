@@ -26,9 +26,10 @@ public class User
     @AssertTrue(message = "Agree to the terms and conditions for signing up")
     private boolean userEnabled;
     private String userRole;
-    @Column(length = 1000)
+    @Lob
+    @Column(columnDefinition = "TEXT")
     @NotEmpty(message = "This field must not be empty!")
-    @Size(min = 10,max = 1000,message = "Minimum 10 and maximum 1000 characters are allowed")
+    @Size(min = 10,max = 10000,message = "Minimum 10 and maximum 10000 characters are allowed")
     private String userAbout;
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
     private List<Contact> contactList = new ArrayList<>();
@@ -89,26 +90,33 @@ public class User
         this.userEnabled = userEnabled;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", userPassword='" + userPassword + '\'' +
-                ", userImageUrl ='" + userImageUrl + '\'' +
-                ", userEnabled=" + userEnabled +
-                ", userRole='" + userRole + '\'' +
-                ", userAbout='" + userAbout + '\'' +
-                ", contactList=" + contactList +
-                '}';
-    }
-
     public String getUserImageUrl() {
         return userImageUrl;
     }
 
     public void setUserImageUrl(String userImageUrl) {
         this.userImageUrl = userImageUrl;
+    }
+
+    public List<Contact> getContactList() {
+        return contactList;
+    }
+
+    public void setContactList(List<Contact> contactList) {
+        this.contactList = contactList;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userImageUrl='" + userImageUrl + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userEnabled=" + userEnabled +
+                ", userRole='" + userRole + '\'' +
+                ", userAbout='" + userAbout + '\'' +
+                '}';
     }
 }

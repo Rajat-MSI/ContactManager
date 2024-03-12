@@ -49,17 +49,16 @@ public class SecurityConfiguration
 
         System.out.println("Inside security filter");
         security.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/user/**").hasRole("USER")
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                        .requestMatchers("/user/**").hasAuthority("USER")
                         .requestMatchers("/**").permitAll()
                 ).formLogin(form ->
                 form.loginPage("/login")
-                        .defaultSuccessUrl("/user_dashboard")
                         .loginProcessingUrl("/process_login")
+                        .defaultSuccessUrl("/user/user_dashboard")
+//                        .failureUrl("/login")
                         .passwordParameter("userPassword")
-                        .usernameParameter("userEmail").permitAll()).logout(logout ->
-                    logout.clearAuthentication(true).clearAuthentication(true).permitAll()
-                ).csrf(AbstractHttpConfigurer::disable).cors(Customizer.withDefaults());
+                        .usernameParameter("userEmail")).csrf(AbstractHttpConfigurer::disable);
         security.authenticationProvider(daoAuthenticationProvider());
         return security.build();
     }

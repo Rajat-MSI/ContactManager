@@ -21,7 +21,7 @@
                     <!--                    </div>-->
                     <form action="" th:action="@{/process_login}" method="post">
                         <div class="form-group text-center">
-                            <div th:if="${param.logout}" class="text-success">You have been successfully logged out</div>
+                            <div th:if="${param.logout}" class="alert alert-success text-success">You have been successfully logged out</div>
                         </div>
                         <!--user email--->
                         <div class="form-group">
@@ -35,21 +35,30 @@
                             <input type="password" class="form-control" name="userPassword" placeholder="Enter Password">
                         </div>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
+                            <label class="form-check-label">Remember me</label>
+                            <input type="checkbox" class="form-check-input" name="">
+                        </div>
+
+                        <div class="text-center">
 <!--                            <input type="checkbox" class="form-check-inline resize" name="userEnabled"/><label-->
 <!--                                class="form-check-label">Keep me logged in</label>-->
-                            <div th:if="${param.error}" class="text-danger">Invalid email or password</div>
+                            <div th:if="${param.error}" class="alert alert-danger text-danger">Invalid email or password</div>
                         </div>
 
                         <div class="form-group">
                             <button class="btn btn-warning form-control" type="submit"><i
-                                    class="bi bi-box-arrow-in-right pe-2"></i>Login
+                                    class="bi bi-arrow-right pe-2"></i>Login
                             </button>
                         </div>
-                        <div class="form-group text-center">
-                            <div class="h6 m-0">Don't have an account? Click here for <a href="signup"><i class="bi bi-person-add pe-2"></i>Signup</a></div>
-                        </div>
+
                     </form>
+                    <div class="form-group text-center">
+                        <div class="m-0 "><a href="#" class="text-dark">Forgot password</a></div>
+                    </div>
+                    <div class="form-group text-center">
+                        <div class="h6 m-0">Don't have an account? Click here for <a th:href="signup"><i class="bi bi-person-add pe-2"></i>Signup</a></div>
+                    </div>
                 </div>
             </div>
         </div>
